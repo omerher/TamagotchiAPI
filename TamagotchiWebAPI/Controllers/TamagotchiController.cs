@@ -93,5 +93,29 @@ namespace TamagotchiWebAPI.Controllers
                 return null;
             }
         }
+
+        [Route("ActivitiesHistory")]
+        [HttpGet]
+        public List<Object> ActivitiesHistory([FromQuery] int id)
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                List<Object> o = context.GetActivitiesHistoryByID(id);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                if (o != null)
+                    return o;
+                else
+                    return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
     }
 }
