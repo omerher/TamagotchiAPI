@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EbuKgUNZV99bd0We7b9U3b4zQEL/DXZVjmHcA2vuoGV5/svAYFAe1NE+PBaRwYRxse3UB9gax0AMyCivKvSs5Q==",
+  "dgSpecHash": "OiGMau+yDCAYPvFvy3P/+RBLasZfWeMNVNhhc6fwaktNp1DaNqhuBG+zldn/+/eZsWTB3OnoxeuDyz4rx3tImA==",
   "success": true,
-  "projectFilePath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
+  "projectFilePath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hersh\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\hersh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

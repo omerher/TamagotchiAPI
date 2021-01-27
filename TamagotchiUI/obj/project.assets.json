@@ -7450,11 +7450,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
+      "projectUniqueName": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
       "projectName": "TamagotchiUI",
-      "projectPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
+      "projectPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
       "packagesPath": "C:\\Users\\hersh\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\obj\\",
+      "outputPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hersh\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj": {}
+    "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj": {
+    "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
+        "projectUniqueName": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
         "projectName": "TamagotchiUI",
-        "projectPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
+        "projectPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj",
         "packagesPath": "C:\\Users\\hersh\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\obj\\",
+        "outputPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hersh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,14 +82,14 @@
         }
       }
     },
-    "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj": {
+    "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj",
+        "projectUniqueName": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj",
         "projectName": "TamagotchiWebAPI",
-        "projectPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj",
+        "projectPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\TamagotchiWebAPI.csproj",
         "packagesPath": "C:\\Users\\hersh\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\obj\\",
+        "outputPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hersh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -105,8 +105,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj": {
-                "projectPath": "D:\\Documents\\School\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj"
+              "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj": {
+                "projectPath": "D:\\Documents\\School\\יא\\שירותי רשת\\TamagotchiAPI\\TamagotchiUI\\TamagotchiUI.csproj"
               }
             }
           }

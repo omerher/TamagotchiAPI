@@ -69,5 +69,29 @@ namespace TamagotchiWebAPI.Controllers
                 return null;
             }
         }
+
+        [Route("createAnimal")]
+        [HttpGet]
+        public AnimalDTO CreateAnimal([FromQuery] string name)
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                Animal a = context.CreateAnimal(name);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                if (a != null)
+                    return new AnimalDTO(a);
+                else
+                    return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
     }
 }
