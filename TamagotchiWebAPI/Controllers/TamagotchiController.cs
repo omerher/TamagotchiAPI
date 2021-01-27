@@ -44,7 +44,7 @@ namespace TamagotchiWebAPI.Controllers
 
         [Route("getAnimals")]
         [HttpGet]
-        public List<AnimalDTO> GetAnimals()
+        public List<AnimalDTO> GetAnimals(int animalId)
         {
             PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
             //Check if user logged in!
@@ -79,6 +79,55 @@ namespace TamagotchiWebAPI.Controllers
             if (pDto != null)
             {
                 Animal a = context.CreateAnimal(name);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                if (a != null)
+                    return new AnimalDTO(a);
+                else
+                    return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+
+        [Route("pastAnimal")]
+        [HttpGet]
+        public AnimalDTO PastAnimal(int animalId)
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                Animal a = context.GetAnimalByID(animalId);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                if (a != null)
+                    return new AnimalDTO(a);
+                else
+                    return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        [Route("activeAnimal")]
+        [HttpGet]
+        public AnimalDTO ActiveAnimal()
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                Player p =context.GetPlayerByID(pDto.PlayerId);
+
+                Animal a = context.GetAnimalByID(p.ActiveAnimalId);
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 

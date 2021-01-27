@@ -30,7 +30,7 @@ namespace TamagotchiUI.Models
             Animal a = this.Animals.Where(a => a.AnimalId == id).FirstOrDefault();
             return a;
         }
-
+        
         //Log in method. Return a player or null if not succeed!
         public Player Login(string email, string pswd)
         {
