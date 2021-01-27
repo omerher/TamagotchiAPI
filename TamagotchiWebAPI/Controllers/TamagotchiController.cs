@@ -93,5 +93,29 @@ namespace TamagotchiWebAPI.Controllers
                 return null;
             }
         }
+
+        [Route("register")]
+        [HttpGet]
+        public PlayerDTO Register([FromQuery] string firstName, [FromQuery] string lastName, [FromQuery] string email, [FromQuery] DateTime dt, [FromQuery] string username, [FromQuery] string password)
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto == null)
+            {
+                Player p = context.Register(firstName,lastName,email,dt,username,password);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                if (p != null)
+                    return new PlayerDTO(p);
+                else
+                    return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
     }
 }
