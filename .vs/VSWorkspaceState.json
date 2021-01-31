@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TamagotchiUI",
+    "\\TamagotchiUI\\ModelsBL",
+    "\\TamagotchiWebAPI",
+    "\\TamagotchiWebAPI\\Controllers"
+  ],
+  "SelectedNode": "\\TamagotchiWebAPI\\Controllers\\TamagotchiController.cs",
+  "PreviewInSolutionExplorer": false
+}
