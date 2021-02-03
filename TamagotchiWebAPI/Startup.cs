@@ -33,6 +33,10 @@ namespace TamagotchiWebAPI
             //without this line of code no routing to the AmericanQueustionsControllerClass will be done
             services.AddControllers();
 
+            //services.AddControllers().AddNewtonsoftJson(options =>
+            //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
             #region Add Session support
             //The following two commands set the Session state to work!
             services.AddDistributedMemoryCache();

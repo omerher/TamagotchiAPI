@@ -13,7 +13,7 @@ namespace TamagotchiUI.Models
     {
         public ActivityDTO()
         {
-            ActivitiesHistories = new HashSet<ActivitiesHistoryDTO>();
+            
         }
 
         [Key]
@@ -25,11 +25,5 @@ namespace TamagotchiUI.Models
         [StringLength(30)]
         public string ActivityName { get; set; }
         public int ImprovementRate { get; set; }
-
-        [ForeignKey(nameof(ActivityCategoryId))]
-        [InverseProperty(nameof(ActivitiesCategoryDTO.Activities))]
-        public virtual ActivitiesCategoryDTO ActivityCategory { get; set; }
-        [InverseProperty(nameof(ActivitiesHistoryDTO.Activity))]
-        public virtual ICollection<ActivitiesHistoryDTO> ActivitiesHistories { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace TamagotchiUI.Models
             return ac;
         }
 
-        public Animal GetAnimalByID(int id)
+        public Animal GetAnimalByID(int? id)
         {
             Animal a = this.Animals.Where(a => a.AnimalId == id).FirstOrDefault();
             return a;
@@ -63,22 +63,23 @@ namespace TamagotchiUI.Models
             }
         }
 
-        public Animal CreateAnimal(string name)
+        public Animal CreateAnimal(string name, int playerID)
         {
-            try {
+            try
+            {
+                Player currentPlayer = this.Players.Where(p => p.PlayerId == playerID).FirstOrDefault();
+
                 Animal a = new Animal()
                 {
                     AnimalName = name,
-                    PlayerId = UIMain.CurrentPlayer.PlayerId
+                    PlayerId = playerID
                 };
-                a.Player = UIMain.CurrentPlayer;
 
                 this.Add(a);
                 this.SaveChanges();
 
-                UIMain.CurrentPlayer.ActiveAnimal = a;
-                UIMain.CurrentPlayer.ActiveAnimalId = a.AnimalId;
-                this.SaveChanges();
+                currentPlayer.ActiveAnimal = a;
+                currentPlayer.ActiveAnimalId = a.AnimalId;
 
                 return a;
             }
@@ -207,22 +208,25 @@ namespace TamagotchiUI.Models
             this.SaveChanges();
         }
 
-        public List<Object> GetActivitiesHistoryByID(int id)
+        public List<ActivitiesHistory> GetActivitiesHistoryByID(int id)
         {
-            return (from activitiesList in UIMain.db.ActivitiesHistories
-                    where activitiesList.AnimalId == id
-                    select new
-                    {
-                        Name = UIMain.db.Activities.Where(a => a.ActivityId == activitiesList.ActivityId).FirstOrDefault().ActivityName,
-                        ActivitiesCategory = UIMain.db.Activities.Where(a => a.ActivityCategoryId == activitiesList.Activity.ActivityCategoryId).FirstOrDefault().ActivityCategory,
-                        Aweight = UIMain.db.ActivitiesHistories.Where(a => a.Aweight == activitiesList.Aweight).FirstOrDefault().Aweight,
-                        Ahunger = UIMain.db.ActivitiesHistories.Where(a => a.Ahunger == activitiesList.Ahunger).FirstOrDefault().Ahunger,
-                        Ahappiness = UIMain.db.ActivitiesHistories.Where(a => a.Ahappiness == activitiesList.Ahappiness).FirstOrDefault().Ahappiness,
-                        Acleanliness = UIMain.db.ActivitiesHistories.Where(a => a.Acleanliness == activitiesList.Acleanliness).FirstOrDefault().Acleanliness,
-                        Date = UIMain.db.ActivitiesHistories.Where(a => a.ActivityDate == activitiesList.ActivityDate).FirstOrDefault().ActivityDate,
-                        AnimalCycleStatus = UIMain.db.ActivitiesHistories.Where(a => a.AnimalCycleStatus == activitiesList.AnimalCycleStatus).FirstOrDefault().AnimalCycleStatus,
-                        HealthStatus = UIMain.db.ActivitiesHistories.Where(a => a.AnimalHealthStatus == activitiesList.AnimalHealthStatus).FirstOrDefault().AnimalHealthStatus,
-                    }).ToList<Object>();
+            List<ActivitiesHistory> lst = this.ActivitiesHistories.Where(h => h.AnimalId == id).ToList();
+            return lst;
+
+            //return (from activitiesList in this.ActivitiesHistories
+            //        where activitiesList.AnimalId == id
+            //        select new
+            //        {
+            //            Name = this.Activities.Where(a => a.ActivityId == activitiesList.ActivityId).FirstOrDefault().ActivityName,
+            //            ActivitiesCategory = this.Activities.Where(a => a.ActivityCategoryId == activitiesList.Activity.ActivityCategoryId).FirstOrDefault().ActivityCategory,
+            //            Aweight = this.ActivitiesHistories.Where(a => a.Aweight == activitiesList.Aweight).FirstOrDefault().Aweight,
+            //            Ahunger = this.ActivitiesHistories.Where(a => a.Ahunger == activitiesList.Ahunger).FirstOrDefault().Ahunger,
+            //            Ahappiness = this.ActivitiesHistories.Where(a => a.Ahappiness == activitiesList.Ahappiness).FirstOrDefault().Ahappiness,
+            //            Acleanliness = this.ActivitiesHistories.Where(a => a.Acleanliness == activitiesList.Acleanliness).FirstOrDefault().Acleanliness,
+            //            Date = this.ActivitiesHistories.Where(a => a.ActivityDate == activitiesList.ActivityDate).FirstOrDefault().ActivityDate,
+            //            AnimalCycleStatus = this.ActivitiesHistories.Where(a => a.AnimalCycleStatus == activitiesList.AnimalCycleStatus).FirstOrDefault().AnimalCycleStatus,
+            //            HealthStatus = this.ActivitiesHistories.Where(a => a.AnimalHealthStatus == activitiesList.AnimalHealthStatus).FirstOrDefault().AnimalHealthStatus,
+            //        }).ToList<ActivitiesHistory>();
         }
 
         //Checking if the email is valid, If not returns exception;
@@ -238,6 +242,18 @@ namespace TamagotchiUI.Models
             {
                 return false;
             }
+        }
+
+        public List<Animal> GetPlayerAnimals(int playerID)
+        {
+            Player currentPlayer = this.Players.Where(p => p.PlayerId == playerID).FirstOrDefault();
+
+            List<Animal> list = new List<Animal>();
+
+            foreach (Animal pa in currentPlayer.Animals)
+                list.Add(pa);
+
+            return list;
         }
     }
 }

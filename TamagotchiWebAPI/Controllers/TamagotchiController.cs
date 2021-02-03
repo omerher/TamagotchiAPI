@@ -44,7 +44,7 @@ namespace TamagotchiWebAPI.Controllers
 
         [Route("getAnimals")]
         [HttpGet]
-        public List<AnimalDTO> GetAnimals(int animalId)
+        public List<AnimalDTO> GetAnimals()
         {
             PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
             //Check if user logged in!
@@ -78,14 +78,43 @@ namespace TamagotchiWebAPI.Controllers
             //Check if user logged in!
             if (pDto != null)
             {
-                Animal a = context.CreateAnimal(name);
+                Animal a = context.CreateAnimal(name, pDto.PlayerId);
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
                 if (a != null)
+                {
                     return new AnimalDTO(a);
+                }
                 else
                     return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+
+        [Route("getPlayerAnimals")]
+        [HttpGet]
+        public List<AnimalDTO> GetPlayerAnimals()
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                List<Animal> list = context.GetPlayerAnimals(pDto.PlayerId);
+
+                List<AnimalDTO> newList = new List<AnimalDTO>();
+                foreach (Animal a in list)
+                {
+                    newList.Add(new AnimalDTO(a));
+                }
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                return newList;
             }
             else
             {
@@ -118,29 +147,30 @@ namespace TamagotchiWebAPI.Controllers
             }
         }
 
-        [Route("pastAnimal")]
-        [HttpGet]
-        public AnimalDTO PastAnimal(int animalId)
-        {
-            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
-            //Check if user logged in!
-            if (pDto != null)
-            {
-                Animal a = context.GetAnimalByID(animalId);
+        //[Route("pastAnimal")]
+        //[HttpGet]
+        //public AnimalDTO PastAnimal(int animalId)
+        //{
+        //    PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+        //    //Check if user logged in!
+        //    if (pDto != null)
+        //    {
+        //        Animal a = context.GetAnimalByID(animalId);
 
-                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+        //        Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
-                if (a != null)
-                    return new AnimalDTO(a);
-                else
-                    return null;
-            }
-            else
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
-                return null;
-            }
-        }
+        //        if (a != null)
+        //            return new AnimalDTO(a);
+        //        else
+        //            return null;
+        //    }
+        //    else
+        //    {
+        //        Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+        //        return null;
+        //    }
+        //}
+
         [Route("activeAnimal")]
         [HttpGet]
         public AnimalDTO ActiveAnimal()
@@ -169,18 +199,74 @@ namespace TamagotchiWebAPI.Controllers
 
         [Route("ActivitiesHistory")]
         [HttpGet]
-        public List<Object> ActivitiesHistory([FromQuery] int id)
+        public List<ActivitiesHistoryDTO> ActivitiesHistory([FromQuery] int id)
         {
             PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
             //Check if user logged in!
             if (pDto != null)
             {
-                List<Object> o = context.GetActivitiesHistoryByID(id);
+                List<ActivitiesHistory> o = context.GetActivitiesHistoryByID(id);
+                List<ActivitiesHistoryDTO> lst = new List<ActivitiesHistoryDTO>();
+
+                foreach (ActivitiesHistory ah in o)
+                    lst.Add(new ActivitiesHistoryDTO(ah));
+
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
-                if (o != null)
-                    return o;
+                if (lst != null)
+                    return lst;
+                else
+                    return null;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+
+        [Route("checkIfDead")]
+        [HttpGet]
+        public bool CheckIfDead([FromQuery] int id)
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                Animal aa = context.Animals.Where(x => x.AnimalId == id).FirstOrDefault();
+
+                if (aa != null)
+                {
+                    bool b = TamagotchiContext.CheckIfDead(aa);
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                    return b;
+                }
+
+                else
+                    return true;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return true;
+            }
+        }
+
+        [Route("getAnimalByID")]
+        [HttpGet]
+        public AnimalDTO GetAnimalByID([FromQuery] int id)
+        {
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //Check if user logged in!
+            if (pDto != null)
+            {
+                Animal a = context.GetAnimalByID(id);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                if (a != null)
+                    return new AnimalDTO(a);
                 else
                     return null;
             }

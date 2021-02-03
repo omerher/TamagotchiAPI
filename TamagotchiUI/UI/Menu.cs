@@ -1,61 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TamagotchiUI.Models;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using TamagotchiUI.Models;
 
-namespace TamagotchiUI.UI
-{
-    class MenuItem
-    {
-        public string MenuTitle { get; set; }
-        public Screen Screen { get; set; }
-        public MenuItem() { }
-        public MenuItem(string title, Screen screen)
-        {
-            MenuTitle = title;
-            Screen = screen;
-        }
-    }
+//namespace TamagotchiUI.UI
+//{
+//    class MenuItem
+//    {
+//        public string MenuTitle { get; set; }
+//        public Screen Screen { get; set; }
+//        public MenuItem() { }
+//        public MenuItem(string title, Screen screen)
+//        {
+//            MenuTitle = title;
+//            Screen = screen;
+//        }
+//    }
 
-    class Menu : Screen
-    {
-        //List contains all menu items
-        private List<MenuItem> items;
-        public Menu(string title) : base(title)
-        {
-            this.items = new List<MenuItem>();
-        }
-        //Use this method to add an item to the menu
-        public void AddItem(string title, Screen screen)
-        {
-            items.Add(new MenuItem(title, screen));
-        }
-        //Show the menu on screen!
-        public override void Show()
-        {
-            bool exit = false;
-            while (!exit) //Loop until user press the exit option (last option)
-            {
-                base.Show();
-                Console.WriteLine("\tMenu");
-                int count = 1;
-                foreach (MenuItem item in items)
-                {
-                    Console.WriteLine($"\t{count}.\t{item.MenuTitle}");
-                    count++;
-                }
-                Console.WriteLine($"\t{count}.\tExit");
-                Console.Write($"Please choose (1 - {count}):\n");
-                int option = 0;
-                int.TryParse(Console.ReadLine(), out option);
-                if (option >= 1 && option <= count)
-                {
-                    if (option == count)//Exit
-                        exit = true;
-                    else
-                        this.items[option - 1].Screen.Show(); //Show selected screen!
-                }
-            }
-        }
-    }
-}
+//    class Menu : Screen
+//    {
+//        //List contains all menu items
+//        private List<MenuItem> items;
+//        public Menu(string title) : base(title)
+//        {
+//            this.items = new List<MenuItem>();
+//        }
+//        //Use this method to add an item to the menu
+//        public void AddItem(string title, Screen screen)
+//        {
+//            items.Add(new MenuItem(title, screen));
+//        }
+//        //Show the menu on screen!
+//        public override void Show()
+//        {
+//            bool exit = false;
+//            while (!exit) //Loop until user press the exit option (last option)
+//            {
+//                base.Show();
+//                Console.WriteLine("\tMenu");
+//                int count = 1;
+//                foreach (MenuItem item in items)
+//                {
+//                    Console.WriteLine($"\t{count}.\t{item.MenuTitle}");
+//                    count++;
+//                }
+//                Console.WriteLine($"\t{count}.\tExit");
+//                Console.Write($"Please choose (1 - {count}):\n");
+//                int option = 0;
+//                int.TryParse(Console.ReadLine(), out option);
+//                if (option >= 1 && option <= count)
+//                {
+//                    if (option == count)//Exit
+//                        exit = true;
+//                    else
+//                        this.items[option - 1].Screen.Show(); //Show selected screen!
+//                }
+//            }
+//        }
+//    }
+//}

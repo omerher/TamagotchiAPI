@@ -17,7 +17,6 @@ namespace TamagotchiUI.Models
     {
         public PlayerDTO()
         {
-            Animals = new HashSet<AnimalDTO>();
         }
 
         public PlayerDTO(Player p)
@@ -58,10 +57,6 @@ namespace TamagotchiUI.Models
         [Column("ActiveAnimalID")]
         public int? ActiveAnimalId { get; set; }
 
-        [ForeignKey(nameof(ActiveAnimalId))]
-        [InverseProperty(nameof(AnimalDTO.PlayerNavigation))]
-        public virtual AnimalDTO ActiveAnimal { get; set; }
-        [InverseProperty(nameof(AnimalDTO.Player))]
-        public virtual ICollection<AnimalDTO> Animals { get; set; }
+        public virtual Animal ActiveAnimal { get; set; }
     }
 }

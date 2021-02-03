@@ -11,6 +11,21 @@ namespace TamagotchiUI.Models
     [Table("ActivitiesHistory")]
     public partial class ActivitiesHistoryDTO
     {
+        public ActivitiesHistoryDTO(ActivitiesHistory h)
+        {
+            HistoryId = h.HistoryId;
+            AnimalId = h.AnimalId;
+            ActivityId = h.ActivityId;
+            AnimalAge = h.AnimalAge;
+            Aweight = h.Aweight;
+            Ahunger = h.Ahunger;
+            Ahappiness = h.Ahappiness;
+            Acleanliness = h.Acleanliness;
+            ActivityDate = h.ActivityDate;
+            AnimalCycleStatusId = h.AnimalCycleStatusId;
+            AnimalHealthStatusId = h.AnimalHealthStatusId;
+        }
+
         [Key]
         [Column("HistoryID")]
         public int HistoryId { get; set; }
@@ -34,17 +49,5 @@ namespace TamagotchiUI.Models
         [Column("AnimalHealthStatusID")]
         public int? AnimalHealthStatusId { get; set; }
 
-        [ForeignKey(nameof(ActivityId))]
-        [InverseProperty("ActivitiesHistories")]
-        public virtual ActivityDTO Activity { get; set; }
-        [ForeignKey(nameof(AnimalId))]
-        [InverseProperty("ActivitiesHistories")]
-        public virtual AnimalDTO Animal { get; set; }
-        [ForeignKey(nameof(AnimalCycleStatusId))]
-        [InverseProperty(nameof(LifeCycleStatusDTO.ActivitiesHistories))]
-        public virtual LifeCycleStatusDTO AnimalCycleStatus { get; set; }
-        [ForeignKey(nameof(AnimalHealthStatusId))]
-        [InverseProperty(nameof(HealthStatusDTO.ActivitiesHistories))]
-        public virtual HealthStatusDTO AnimalHealthStatus { get; set; }
     }
 }

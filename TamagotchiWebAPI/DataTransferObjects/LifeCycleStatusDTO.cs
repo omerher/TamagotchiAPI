@@ -13,8 +13,7 @@ namespace TamagotchiUI.Models
     {
         public LifeCycleStatusDTO()
         {
-            ActivitiesHistories = new HashSet<ActivitiesHistoryDTO>();
-            Animals = new HashSet<AnimalDTO>();
+            
         }
 
         [Key]
@@ -25,9 +24,5 @@ namespace TamagotchiUI.Models
         public string StatusName { get; set; }
         public int CycleTime { get; set; }
 
-        [InverseProperty(nameof(ActivitiesHistoryDTO.AnimalCycleStatus))]
-        public virtual ICollection<ActivitiesHistoryDTO> ActivitiesHistories { get; set; }
-        [InverseProperty(nameof(AnimalDTO.LifeCycle))]
-        public virtual ICollection<AnimalDTO> Animals { get; set; }
     }
 }

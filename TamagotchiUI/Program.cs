@@ -8,10 +8,11 @@ namespace TamagotchiUI
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World");
             // Scaffold-DbContext "Server = localhost\SQLEXPRESS; Database=TamagotchiDB;Trusted_Connection = true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context TamagotchiContext –DataAnnotations -force
 
-            UIMain ui = new UIMain(new LoginRegisterScreen());
-            ui.ApplicationStart();
+            //UIMain ui = new UIMain(new LoginRegisterScreen());
+            //ui.ApplicationStart();
         }
     }
 }
