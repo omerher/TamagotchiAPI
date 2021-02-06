@@ -42,34 +42,6 @@ namespace TamagotchiWebAPI.Controllers
             }
         }
 
-        [Route("getAnimals")]
-        [HttpGet]
-        public List<AnimalDTO> GetAnimals()
-        {
-            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
-            //Check if user logged in!
-            if (pDto != null)
-            {
-                Player p = context.Players.Where(pp => pp.PlayerId == pDto.PlayerId).FirstOrDefault();
-                List<AnimalDTO> list = new List<AnimalDTO>();
-                if (p != null)
-                {
-                    foreach (Animal pa in p.Animals)
-                    {
-                        list.Add(new AnimalDTO(pa));
-                    }
-                }
-                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-
-                return list;
-            }
-            else
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
-                return null;
-            }
-        }
-
         [Route("createAnimal")]
         [HttpGet]
         public AnimalDTO CreateAnimal([FromQuery] string name)
@@ -108,9 +80,7 @@ namespace TamagotchiWebAPI.Controllers
 
                 List<AnimalDTO> newList = new List<AnimalDTO>();
                 foreach (Animal a in list)
-                {
                     newList.Add(new AnimalDTO(a));
-                }
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
@@ -131,7 +101,7 @@ namespace TamagotchiWebAPI.Controllers
             //Check if user logged in!
             if (pDto == null)
             {
-                Player p = context.Register(firstName,lastName,email,dt,username,password);
+                Player p = context.Register(firstName, lastName, email, dt, username, password);
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
@@ -146,30 +116,6 @@ namespace TamagotchiWebAPI.Controllers
                 return null;
             }
         }
-
-        //[Route("pastAnimal")]
-        //[HttpGet]
-        //public AnimalDTO PastAnimal(int animalId)
-        //{
-        //    PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
-        //    //Check if user logged in!
-        //    if (pDto != null)
-        //    {
-        //        Animal a = context.GetAnimalByID(animalId);
-
-        //        Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-
-        //        if (a != null)
-        //            return new AnimalDTO(a);
-        //        else
-        //            return null;
-        //    }
-        //    else
-        //    {
-        //        Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
-        //        return null;
-        //    }
-        //}
 
         [Route("activeAnimal")]
         [HttpGet]
